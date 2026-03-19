@@ -20,4 +20,4 @@ terraform destroy
 Heredoc delimiter issue in user_data script — fixed by changing `<<HTML` to `<<-HTML`
 
 ## Blog Post
-[Insert Medium link here]
+[[Medium link]](https://medium.com/@beldine3/deploying-your-first-server-with-terraform-a-beginners-guide-3b3d4e008c81)
