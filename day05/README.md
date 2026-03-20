@@ -29,4 +29,4 @@ Part B: Added manual tag to ALB security group — drift detected immediately. T
 - Terraform only detects drift on resources it directly manages
 
 ## Blog Post
-🔗 [Insert Medium link here]
+🔗 [[Insert Medium link here](https://medium.com/@beldine3/managing-high-traffic-applications-with-aws-elastic-load-balancer-and-terraform-e147131a7170)]
