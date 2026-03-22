@@ -26,4 +26,7 @@
 - Single entry point via ALB
 
 ## Blog Post
-https://medium.com/@beldine3/deploying-a-highly-available-web-app-on-aws-using-terraform-2c392cb4e16f
+   [Medium]https://medium.com/@beldine3/deploying-a-highly-available-web-app-on-aws-using-terraform-2c392cb4e16f
+
+## LinkedIn Post
+   [LinkedIn](https://www.linkedin.com/feed/update/urn:li:activity:7440653389455187968/)
