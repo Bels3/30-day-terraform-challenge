@@ -30,9 +30,10 @@ resource "aws_security_group" "instance" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = {
-    Name = "${var.cluster_name}-instance-sg"
-  }
+  tags = merge(
+    { Name = "${var.cluster_name}-instance-sg" },
+    var.custom_tags
+  )
 }
 
 resource "aws_security_group" "alb" {
@@ -52,9 +53,10 @@ resource "aws_security_group" "alb" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = {
-    Name = "${var.cluster_name}-alb-sg"
-  }
+  tags = merge(
+    { Name = "${var.cluster_name}-alb-sg" },
+    var.custom_tags
+  )
 }
 
 resource "aws_launch_template" "example" {
@@ -101,9 +103,10 @@ resource "aws_launch_template" "example" {
 
   tag_specifications {
     resource_type = "instance"
-    tags = {
-      Name = "${var.cluster_name}-instance"
-    }
+    tags = merge(
+      { Name = "${var.cluster_name}-instance" },
+      var.custom_tags
+    )
   }
 }
 
@@ -125,6 +128,15 @@ resource "aws_autoscaling_group" "example" {
     value               = "${var.cluster_name}-asg"
     propagate_at_launch = true
   }
+
+  dynamic "tag" {
+    for_each = var.custom_tags
+    content {
+      key                 = tag.key
+      value               = tag.value
+      propagate_at_launch = true
+    }
+  }
 }
 
 resource "aws_lb" "example" {
@@ -134,9 +146,10 @@ resource "aws_lb" "example" {
   security_groups    = [aws_security_group.alb.id]
   subnets            = data.aws_subnets.default.ids
 
-  tags = {
-    Name = "${var.cluster_name}-alb"
-  }
+  tags = merge(
+    { Name = "${var.cluster_name}-alb" },
+    var.custom_tags
+  )
 }
 
 resource "aws_lb_target_group" "example" {
@@ -154,6 +167,11 @@ resource "aws_lb_target_group" "example" {
     healthy_threshold   = 2
     unhealthy_threshold = 2
   }
+
+  tags = merge(
+    { Name = "${var.cluster_name}-tg" },
+    var.custom_tags
+  )
 }
 
 resource "aws_lb_listener" "http" {

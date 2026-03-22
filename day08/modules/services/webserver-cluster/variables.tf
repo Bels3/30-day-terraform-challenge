@@ -30,3 +30,9 @@ variable "ami" {
   type        = string
   default     = "ami-0c38b837cd80f13bb"
 }
+
+variable "custom_tags" {
+  description = "Custom tags to apply to all resources"
+  type        = map(string)
+  default     = {}
+}
