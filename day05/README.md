@@ -30,3 +30,6 @@ Part B: Added manual tag to ALB security group — drift detected immediately. T
 
 ## Blog Post
 🔗 [[Medium link](https://medium.com/@beldine3/managing-high-traffic-applications-with-aws-elastic-load-balancer-and-terraform-e147131a7170)]
+
+## LinkedIn Post
+🔗 [LinkedIn](https://www.linkedin.com/feed/update/urn:li:activity:7441006292497772544/)
