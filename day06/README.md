@@ -110,13 +110,10 @@ Always add to .gitignore:
 - Public access block: state never publicly accessible
 
 ## Blog Post
-Medium post publishing tomorrow — 24 hour new writer limit.
-Full writeup covers bootstrap problem, migration process,
-state backup behaviour, locking demonstration, and
-remote state best practices.
+[Medium post published.](https://medium.com/@beldine3/how-to-securely-store-terraform-state-files-with-remote-backends-af612c45e753)
 
 ## Social Media
-LinkedIn post scheduled for tomorrow.
+[LinkedIn post](https://www.linkedin.com/feed/update/urn:li:activity:7441378131292274688/).
 
 ## GitHub
 https://github.com/Bels3/30-day-terraform-challenge/tree/master/day06
