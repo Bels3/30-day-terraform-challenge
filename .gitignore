@@ -6,3 +6,4 @@
 *.tfvars
 crash.log
 override.tf
+backend.hcl
