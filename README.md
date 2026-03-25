@@ -13,7 +13,7 @@ My journey through the 30-Day Terraform Challenge, building real infrastructure 
 | Day 05 | Scaling Infrastructure and Terraform State | Done |
 | Day 06 | Understanding and Managing Terraform State | Done |
 | Day 07 | State Isolation — Workspaces vs File Layouts | Done |
-| Day 08 | Building Reusable Infrastructure with Terraform Modules |
+| Day 08 | Building Reusable Infrastructure with Terraform Modules | Done |
 | Day 09 | Module Versioning with GitHub Tags | Done |
 | Day 10 | Loops and Conditionals in Terraform | Done |
 | Day 11 | Advanced Terraform Patterns | Done |
