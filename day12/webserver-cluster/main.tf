@@ -103,6 +103,14 @@ resource "aws_autoscaling_group" "blue" {
     version = "$Latest"
   }
 
+   instance_refresh {
+    strategy = "Rolling"
+    preferences {
+      min_healthy_percentage = 50
+    }
+    triggers = ["launch_template"]
+  }
+
   lifecycle {
     create_before_destroy = true
   }
@@ -125,6 +133,14 @@ resource "aws_autoscaling_group" "green" {
   launch_template {
     id      = aws_launch_template.example.id
     version = "$Latest"
+  }
+
+   instance_refresh {
+    strategy = "Rolling"
+    preferences {
+      min_healthy_percentage = 50
+    }
+    triggers = ["launch_template"]
   }
 
   lifecycle {
