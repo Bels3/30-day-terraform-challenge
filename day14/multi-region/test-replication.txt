@@ -1,0 +1,1 @@
+Hello from eu-west-1 — Day 14 Terraform Challenge
