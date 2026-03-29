@@ -25,7 +25,7 @@ Workspaces: same code, different state — easy to accidentally apply to wrong e
 File Layouts: separate code and state — stronger isolation, recommended for production
 
 ## Blog Post
-[Medium link](https://medium.com/@beldine3/state-isolation-workspaces-vs-file-layouts-when-to-use-each-9943287d761a)]
+[Medium link](https://medium.com/@beldine3/state-isolation-workspaces-vs-file-layouts-when-to-use-each-9943287d761a)
 
 ## Blog Post
 [LinkedIn](https://www.linkedin.com/feed/update/urn:li:activity:7441732967082889216/)
