@@ -38,6 +38,6 @@ aws s3 ls s3://beldine-day14-replica/ --region eu-west-2
 
 Two provider blocks in one main.tf — one default for eu-west-1, one aliased for eu-west-2. Resources referencing `provider = aws.eu_west_2` deploy to London. Everything else deploys to Ireland. One apply handles both.
 
-## GitHub
+## Medium
 
-[github.com/Bels3/30-day-terraform-challenge](https://github.com/Bels3/30-day-terraform-challenge)
+[Link](https://medium.com/@beldine3/getting-started-with-multiple-providers-in-terraform-8714be54130b)
