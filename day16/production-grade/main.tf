@@ -362,9 +362,9 @@ resource "aws_cloudwatch_log_group" "web" {
   name              = "/terraform/${var.cluster_name}"
   retention_in_days = 30
 
-  lifecycle {
-    prevent_destroy = true
-  }
+  #lifecycle {
+   # prevent_destroy = true
+  #}
 
   tags = merge(local.common_tags, {
     Name = "${var.cluster_name}-log-group"
