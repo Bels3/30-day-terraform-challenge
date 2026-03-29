@@ -36,6 +36,6 @@ day15/
 
 EKS 1.29 uses access entries instead of aws-auth ConfigMap. Adding enable_cluster_creator_admin_permissions = true and an explicit access_entries block fixed the Unauthorized error on the Kubernetes deployment without reprovisioning the cluster.
 
-## GitHub
+## Medium
 
-[github.com/Bels3/30-day-terraform-challenge](https://github.com/Bels3/30-day-terraform-challenge)
+[Article](https://medium.com/@beldine3/deploying-multi-cloud-infrastructure-with-terraform-and-when-a-readers-critique-changes-the-game-25d4c995c0c7)
