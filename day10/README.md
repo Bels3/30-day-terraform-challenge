@@ -33,4 +33,7 @@ That difference determines whether removing one item
 destroys one resource or cascades through your entire list.
 
 ## Blog Post
-[Insert Medium link here]
+[Medium article](https://medium.com/@beldine3/mastering-loops-and-conditionals-in-terraform-08f0d31a66f6)
+
+## LinkedIn Post
+[Linkedin](https://www.linkedin.com/feed/update/urn:li:activity:7442530794306424832/)
