@@ -56,6 +56,6 @@ terraform show | grep -i password
 
 Running `terraform show | grep -i password` returned `password_wo = (write-only attribute)` — meaning the password is never stored in state at all in Terraform 1.14. This is stronger protection than sensitive = true alone.
 
-## GitHub
+## Medium
 
-[github.com/Bels3/30-day-terraform-challenge](https://github.com/Bels3/30-day-terraform-challenge)
+[Article](https://medium.com/@beldine3/how-to-handle-sensitive-data-securely-in-terraform-0a28d2fa5cbe)
