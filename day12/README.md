@@ -82,8 +82,8 @@ aws autoscaling describe-instance-refreshes \
 
 ## Medium Article
 
-Coming soon.
+[Link](https://medium.com/@beldine3/mastering-zero-downtime-deployments-with-terraform-cc34509e75b0)
 
-## GitHub
+## LinkedIn
 
-[github.com/Bels3/30-day-terraform-challenge](https://github.com/Bels3/30-day-terraform-challenge)
+[Post](https://www.linkedin.com/feed/update/urn:li:activity:7443212987395555329/)
