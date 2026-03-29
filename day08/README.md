@@ -91,7 +91,10 @@ future bug waiting to happen.
 - Production state: day08/live/production/terraform.tfstate
 
 ## Blog Post
-Medium article coming soon
+[Medium article](https://medium.com/@beldine3/building-reusable-infrastructure-with-terraform-modules-8bbdf7cb99b7)
+
+## Social media post
+[LinkedIn](https://www.linkedin.com/feed/update/urn:li:activity:7442091585036554241/)
 
 ## Communities
 - AWS AI/ML UserGroup Kenya
