@@ -268,3 +268,4 @@ resource "aws_cloudwatch_log_group" "web" {
     Name = "${var.cluster_name}-log-group"
   })
 }
+# Day 18 automated testing
