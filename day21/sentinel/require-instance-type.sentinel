@@ -1,0 +1,40 @@
+# sentinel/require-instance-type.sentinel
+# Enforces that all EC2 resources in a plan use only approved instance types.
+# Blocks any plan that attempts to deploy an instance type outside the allowlist.
+# What this enforces:
+#   - Prevents engineers from accidentally deploying expensive instance types
+#     (e.g. m5.4xlarge, r5.8xlarge) that would dramatically increase cost
+#   - Ensures all instances stay within the validated t2/t3 family defined
+#     in variables.tf validation rules
+#   - Runs BEFORE apply — Sentinel is a pre-apply gate, not a post-apply check
+#
+# What terraform validate does NOT do that Sentinel does:
+#   - terraform validate checks syntax and type correctness only
+#   - It does not enforce business rules like "only these instance types allowed"
+#   - Sentinel enforces policy across the entire organisation, not per-repo
+#   - Sentinel runs in Terraform Cloud before any human can approve the apply
+
+import "tfplan/v2" as tfplan
+
+allowed_instance_types = [
+  "t2.micro",
+  "t2.small",
+  "t2.medium",
+  "t3.micro",
+  "t3.small",
+  "t3.medium",
+]
+
+# Check all resource changes in the plan
+all_instance_types_allowed = rule {
+  all tfplan.resource_changes as _, rc {
+    rc.type is not "aws_instance" and
+    rc.type is not "aws_launch_template" or
+    rc.change.after.instance_type in allowed_instance_types
+  }
+}
+
+# Main rule — this is what Terraform Cloud evaluates
+main = rule {
+  all_instance_types_allowed
+}
