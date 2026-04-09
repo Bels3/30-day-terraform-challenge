@@ -1,62 +1,53 @@
-name: Terraform Tests
+name: Infrastructure CI
 
 on:
   pull_request:
-    branches: [master]
+    branches: [main]
   push:
-    branches: [master]
+    branches: [main]
 
 jobs:
-  unit-tests:
-    name: Unit Tests
+  validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: "1.14.0"
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-access-key-id:     ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region:            eu-west-1
+      - name: Format check
+        run: terraform fmt -check -recursive
 
-      - name: Terraform Init
+      - name: Init
         run: terraform init -backend=false
-        working-directory: day18/automated-testing
+        working-directory: day22/webserver-cluster
 
-      - name: Run Unit Tests
+      - name: Validate
+        run: terraform validate
+        working-directory: day22/webserver-cluster
+
+      - name: Unit tests
         run: terraform test
-        working-directory: day18/automated-testing
+        working-directory: day22/webserver-cluster
 
-  integration-tests:
-    name: Integration Tests
+  plan:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
-    needs: unit-tests
+    needs: validate
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     steps:
       - uses: actions/checkout@v4
-
       - uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: "1.14.0"
 
-      - uses: actions/setup-go@v4
-        with:
-          go-version: "1.21"
+      - name: Init
+        run: terraform init -backend-config=../backend.hcl
+        working-directory: day22/webserver-cluster
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-access-key-id:     ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region:            eu-west-1
+      - name: Plan
+        run: terraform plan -out=day22.tfplan
+        working-directory: day22/webserver-cluster
 
-      - name: Run Integration Tests
-        run: go test -v -timeout 30m ./...
-        working-directory: day18/automated-testing/test
-        env:
-          TERRATEST_TERRAFORM_EXECUTABLE: terraform
+      - name: Upload plan artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: terraform-plan
+          path: day22/webserver-cluster/day22.tfplan
