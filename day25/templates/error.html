@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Resource Not Found</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+  :root {
+    --ink: #0a0a08;
+    --paper: #f5f0e8;
+    --amber: #d4800a;
+    --amber-light: #f0a830;
+    --log-bg: #0d1117;
+    --log-red: #f85149;
+    --log-muted: #8b949e;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --mono: 'DM Mono', 'Courier New', monospace;
+  }
+ 
+  html, body {
+    height: 100%;
+  }
+ 
+  body {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--mono);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+    text-align: center;
+  }
+ 
+  .error-code {
+    font-family: var(--serif);
+    font-size: clamp(6rem, 20vw, 14rem);
+    color: var(--amber-light);
+    line-height: 1;
+    opacity: 0.15;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    user-select: none;
+  }
+ 
+  .content {
+    position: relative;
+    z-index: 1;
+  }
+ 
+  .error-label {
+    font-size: 0.7rem;
+    color: var(--log-red);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+ 
+  .error-label::before, .error-label::after {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 1px;
+    background: var(--log-red);
+  }
+ 
+  .error-headline {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 5vw, 3.5rem);
+    color: var(--paper);
+    font-weight: 400;
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+ 
+  .error-body {
+    font-size: 0.8rem;
+    color: var(--log-muted);
+    line-height: 1.8;
+    max-width: 36ch;
+    margin: 0 auto 2rem;
+  }
+ 
+  .error-log {
+    background: var(--log-bg);
+    border: 1px solid rgba(248, 81, 73, 0.3);
+    padding: 1rem 1.5rem;
+    font-size: 0.75rem;
+    color: var(--log-red);
+    text-align: left;
+    max-width: 480px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.9;
+  }
+ 
+  .back-link {
+    display: inline-block;
+    font-size: 0.72rem;
+    color: var(--amber);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--amber);
+    padding-bottom: 2px;
+  }
+ 
+  .back-link:hover {
+    color: var(--amber-light);
+    border-color: var(--amber-light);
+  }
+</style>
+</head>
+<body>
+ 
+<div class="error-code">404</div>
+ 
+<div class="content">
+  <p class="error-label">Resource Not Found</p>
+  <h1 class="error-headline">This path does not exist.</h1>
+  <p class="error-body">
+    The resource you requested could not be located in the current state file.
+    It may have been destroyed, never created, or you may have the wrong address.
+  </p>
+ 
+  <div class="error-log">
+    <div>Error: No such resource</div>
+    <div>&nbsp;</div>
+    <div>  on main.tf line 1, in resource:</div>
+    <div>   resource "this_path" "not_found" {}</div>
+    <div>&nbsp;</div>
+    <div>  This object does not exist in state.</div>
+  </div>
+ 
+  <a href="/" class="back-link">Return to root</a>
+</div>
+ 
+</body>
+</html>
