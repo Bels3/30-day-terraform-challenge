@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>INFRASTRUCTURE NOMINAL — Beldine Oluoch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:      #080c10;
+  --surface: #0d1117;
+  --border:  #1e2d3d;
+  --green:   #00ff87;
+  --gdim:    #00c96a;
+  --amber:   #ffb300;
+  --blue:    #4fc3f7;
+  --muted:   #3a4a5c;
+  --text:    #c8d8e8;
+  --tdim:    #607080;
+  --mono:    'Space Mono', monospace;
+  --disp:    'Syne', sans-serif;
+}
+
+html, body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--mono);
+}
+
+/* scanlines */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.05) 3px, rgba(0,0,0,0.05) 6px);
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* ── LAYOUT ── */
+.shell {
+  display: grid;
+  grid-template-rows: 4.5vh 95.5vh;
+  width: 100vw;
+  height: 100vh;
+}
+
+.body {
+  display: grid;
+  grid-template-columns: 19vw 1fr 22vw;
+  overflow: hidden;
+}
+
+/* ── TOPBAR ── */
+.topbar {
+  background: var(--surface);
+  border-bottom: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 1.5vw;
+  gap: 0;
+}
+
+.tb-logo {
+  font-family: var(--disp);
+  font-size: clamp(13px, 1.2vw, 18px);
+  font-weight: 800;
+  color: var(--green);
+  letter-spacing: .05em;
+  margin-right: 2vw;
+  white-space: nowrap;
+}
+
+.pulse {
+  width: clamp(7px, 0.7vw, 10px);
+  height: clamp(7px, 0.7vw, 10px);
+  border-radius: 50%;
+  background: var(--green);
+  animation: pu 2s ease-out infinite;
+  flex-shrink: 0;
+}
+.pulse.a { background: var(--amber); animation: pua 2s ease-out infinite; }
+.pulse.sm { width: clamp(5px,0.5vw,8px); height: clamp(5px,0.5vw,8px); }
+
+@keyframes pu  { 0%{box-shadow:0 0 0 0 rgba(0,255,135,.6)} 70%{box-shadow:0 0 0 8px rgba(0,255,135,0)} 100%{box-shadow:0 0 0 0 rgba(0,255,135,0)} }
+@keyframes pua { 0%{box-shadow:0 0 0 0 rgba(255,179,0,.6)} 70%{box-shadow:0 0 0 8px rgba(255,179,0,0)}  100%{box-shadow:0 0 0 0 rgba(255,179,0,0)}  }
+
+.tb-st { display: flex; align-items: center; gap: 0.6vw; margin-right: 2vw; }
+.tb-st-t { font-size: clamp(9px, 0.8vw, 13px); color: var(--green); letter-spacing: .1em; text-transform: uppercase; }
+.sep { width: 1px; height: 2.5vh; background: var(--border); margin-right: 1.5vw; }
+.tb-m { font-size: clamp(9px, 0.75vw, 12px); color: var(--tdim); margin-right: 1.5vw; letter-spacing: .03em; white-space: nowrap; }
+.tb-m span { color: var(--text); }
+.clock { margin-left: auto; font-size: clamp(12px, 1.1vw, 17px); color: var(--green); letter-spacing: .1em; font-weight: 700; }
+
+/* ── SIDEBAR ── */
+.sb {
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+}
+
+.pnl { border-bottom: 1px solid var(--border); padding: 1vh 1.2vw; }
+
+.plbl {
+  font-size: clamp(9px, 0.7vw, 11px);
+  color: var(--tdim);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  margin-bottom: 1vh;
+}
+
+/* health rows */
+.hr { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.4vh; }
+.hn { font-size: clamp(10px, 0.85vw, 13px); color: var(--tdim); }
+.hv { font-size: clamp(10px, 0.85vw, 13px); font-weight: 700; color: var(--green); letter-spacing: .05em; }
+.hv.a { color: var(--amber); }
+.hv.b { color: var(--blue); }
+
+.mtr { width: 100%; height: 3px; background: var(--border); margin: 0.3vh 0 0.9vh; }
+.mtr:last-child { margin-bottom: 0; }
+.mf { height: 3px; background: var(--green); transition: width 1s ease; }
+.mf.a { background: var(--amber); }
+
+/* resource rows */
+.rr {
+  display: flex; align-items: center; gap: 0.5vw;
+  margin-bottom: 0.6vh; padding: 0.6vh 0.7vw;
+  background: rgba(255,255,255,.02);
+  border: 1px solid var(--border);
+}
+.rr:last-child { margin-bottom: 0; }
+.rt { font-size: clamp(9px, 0.78vw, 12px); color: var(--tdim); flex: 1; letter-spacing: .02em; }
+.rc { font-size: clamp(13px, 1.1vw, 18px); font-weight: 700; color: var(--green); min-width: 1.5vw; text-align: right; }
+.bdg { font-size: clamp(8px, 0.62vw, 10px); padding: 1px 0.4vw; border: 1px solid var(--gdim); color: var(--gdim); letter-spacing: .06em; flex-shrink: 0; }
+.bdg.a { border-color: var(--amber); color: var(--amber); }
+.bdg.d { border-color: var(--tdim); color: var(--tdim); }
+
+/* latency grid */
+.lgrd { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6vh; }
+.lc { background: rgba(255,255,255,.02); border: 1px solid var(--border); padding: 0.7vh 0.6vw; }
+.lr { font-size: clamp(8px, 0.65vw, 10px); color: var(--tdim); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 0.3vh; }
+.lv { font-size: clamp(16px, 1.5vw, 24px); font-weight: 700; color: var(--green); line-height: 1; }
+.lv.a { color: var(--amber); }
+.lu { font-size: clamp(8px, 0.6vw, 10px); color: var(--tdim); }
+
+.sbft {
+  margin-top: auto;
+  border-top: 1px solid var(--border);
+  padding: 1vh 1.2vw;
+  font-size: clamp(8px, 0.68vw, 11px);
+  color: var(--tdim);
+  line-height: 1.9;
+}
+
+/* ── CENTRE ── */
+.ctr { display: flex; flex-direction: column; overflow: hidden; }
+
+.mpp {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+  min-height: 0;
+}
+
+.mhl { position: absolute; top: 2vh; left: 2vw; z-index: 10; }
+.mhl h1 {
+  font-family: var(--disp);
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+  letter-spacing: .01em;
+}
+.mhl h1 span { color: var(--green); }
+.mhl p {
+  font-size: clamp(9px, 0.75vw, 12px);
+  color: var(--tdim);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-top: 0.8vh;
+}
+
+.msv {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  opacity: .13;
+}
+
+.r53b {
+  position: absolute; top: 2vh; right: 1.5vw;
+  background: rgba(8,12,16,.95);
+  border: 1px solid var(--amber);
+  padding: 0.9vh 1vw;
+  z-index: 10;
+}
+.r53l { font-size: clamp(8px, 0.65vw, 11px); color: var(--amber); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 0.3vh; }
+.r53d { font-size: clamp(12px, 1.1vw, 17px); font-weight: 700; color: var(--text); margin-bottom: 0.3vh; }
+.r53s { font-size: clamp(8px, 0.68vw, 11px); color: var(--green); }
+
+/* edge dots */
+.edot {
+  position: absolute;
+  width: clamp(8px, 0.8vw, 12px);
+  height: clamp(8px, 0.8vw, 12px);
+  border-radius: 50%;
+  background: var(--green);
+  transform: translate(-50%,-50%);
+  z-index: 5;
+}
+.edot::before, .edot::after {
+  content: ''; position: absolute; border-radius: 50%; border: 1px solid var(--green);
+}
+.edot::before { inset: -5px; animation: er 2.5s ease-out infinite; }
+.edot::after  { inset: -10px; animation: er 2.5s ease-out .4s infinite; }
+.edot.a { background: var(--amber); }
+.edot.a::before, .edot.a::after { border-color: var(--amber); }
+@keyframes er { 0%{transform:scale(.5);opacity:.4} 100%{transform:scale(2);opacity:0} }
+
+.elbl {
+  position: absolute;
+  font-size: clamp(8px, 0.68vw, 11px);
+  color: var(--tdim);
+  letter-spacing: .06em;
+  white-space: nowrap;
+  transform: translate(-50%, 12px);
+  z-index: 5;
+}
+
+/* bottom cards */
+.crow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--border);
+  height: 16vh;
+  flex-shrink: 0;
+}
+.card {
+  border-right: 1px solid var(--border);
+  padding: 1.5vh 1.2vw;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.card:last-child { border-right: none; }
+.cl { font-size: clamp(9px, 0.72vw, 12px); color: var(--tdim); letter-spacing: .12em; text-transform: uppercase; }
+.cv {
+  font-family: var(--disp);
+  font-size: clamp(24px, 3vw, 48px);
+  font-weight: 700; color: var(--green); line-height: 1;
+}
+.cv.b { color: var(--blue); }
+.cv.a { color: var(--amber); }
+.cs { font-size: clamp(9px, 0.7vw, 12px); color: var(--tdim); }
+.cg { color: var(--green); }
+
+/* ── LOG PANEL ── */
+.lgp {
+  border-left: 1px solid var(--border);
+  display: flex; flex-direction: column; overflow: hidden;
+  height: 100%;
+}
+
+.lgh {
+  padding: 1vh 1.2vw;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  flex-shrink: 0;
+}
+.lgt { font-size: clamp(9px, 0.72vw, 12px); color: var(--tdim); letter-spacing: .15em; text-transform: uppercase; }
+.lgl { display: flex; align-items: center; gap: 0.5vw; font-size: clamp(9px, 0.72vw, 12px); color: var(--green); letter-spacing: .08em; }
+
+.lff {
+  flex: 1; overflow: hidden; padding: 0.5vh 0;
+  display: flex; flex-direction: column;
+  min-height: 0;
+}
+
+.ll {
+  padding: 0.45vh 1.2vw;
+  font-size: clamp(9px, 0.75vw, 12px);
+  line-height: 1.5;
+  display: flex; gap: 0.6vw;
+  border-left: 2px solid transparent;
+  animation: ls .2s ease forwards;
+  flex-shrink: 0;
+}
+@keyframes ls { from{opacity:0;transform:translateX(6px)} to{opacity:1;transform:translateX(0)} }
+
+.ll.info  { border-left-color: var(--blue); }
+.ll.ok    { border-left-color: var(--green); }
+.ll.warn  { border-left-color: var(--amber); }
+.ll.debug { border-left-color: var(--muted); }
+
+.lt2 { color: var(--muted); flex-shrink: 0; }
+.ltg { flex-shrink: 0; font-weight: 700; }
+.ltg.info  { color: var(--blue); }
+.ltg.ok    { color: var(--green); }
+.ltg.warn  { color: var(--amber); }
+.ltg.debug { color: var(--muted); }
+.lmg { color: var(--tdim); flex: 1; word-break: break-all; }
+.lmg em { color: var(--text); font-style: normal; }
+
+/* sentinel */
+.snb {
+  margin: 0.8vh 1.2vw 0;
+  background: rgba(0,255,135,.03);
+  border: 1px solid rgba(0,255,135,.15);
+  padding: 0.8vh 1vw;
+  flex-shrink: 0;
+}
+.snt {
+  font-size: clamp(9px, 0.72vw, 12px);
+  color: var(--green); letter-spacing: .12em; text-transform: uppercase;
+  margin-bottom: 0.6vh;
+  display: flex; align-items: center; gap: 0.5vw;
+}
+.sr { display: flex; justify-content: space-between; margin-bottom: 0.5vh; }
+.sr:last-child { margin-bottom: 0; }
+.sn { font-size: clamp(10px, 0.8vw, 13px); color: var(--tdim); }
+.sp { font-size: clamp(10px, 0.8vw, 13px); color: var(--green); font-weight: 700; }
+
+/* uptime */
+.upb { border-top: 1px solid var(--border); padding: 0.8vh 1.2vw; flex-shrink: 0; }
+.uph {
+  font-size: clamp(9px, 0.7vw, 11px); color: var(--tdim);
+  letter-spacing: .1em; text-transform: uppercase;
+  margin-bottom: 0.6vh;
+  display: flex; justify-content: space-between;
+}
+.uph span { color: var(--green); }
+.ubs { display: flex; gap: 2px; }
+.ub2 { flex: 1; height: 6px; background: var(--green); opacity: .65; }
+.ub2.a { background: var(--amber); }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="tb-logo">MISSION&nbsp;CTRL</div>
+    <div class="tb-st"><div class="pulse"></div><span class="tb-st-t">Infrastructure Nominal</span></div>
+    <div class="sep"></div>
+    <div class="tb-m">Region <span>eu-west-1</span></div>
+    <div class="tb-m">Account <span>378898160669</span></div>
+    <div class="tb-m">Terraform <span>v1.14.7</span></div>
+    <div class="tb-m">Day <span>25 / 30</span></div>
+    <div class="sep"></div>
+    <div class="tb-m">TF_LOG <span style="color:var(--green)">DEBUG ●</span></div>
+    <div class="tb-m">State <span style="color:var(--green)">LOCKED</span></div>
+    <div class="clock" id="clk">--:--:--</div>
+  </header>
+
+  <div class="body">
+
+    <!-- SIDEBAR -->
+    <aside class="sb">
+
+      <div class="pnl">
+        <div class="plbl">System Health</div>
+        <div class="hr"><span class="hn">S3 Bucket</span><span class="hv">ONLINE</span></div>
+        <div class="mtr"><div class="mf" style="width:100%"></div></div>
+        <div class="hr"><span class="hn">CloudFront CDN</span><span class="hv">DEPLOYED</span></div>
+        <div class="mtr"><div class="mf" style="width:100%"></div></div>
+        <div class="hr"><span class="hn">Route 53 DNS</span><span class="hv b">PROPAGATING</span></div>
+        <div class="mtr"><div class="mf a" id="r53m" style="width:68%"></div></div>
+        <div class="hr"><span class="hn">ACM Certificate</span><span class="hv">ISSUED</span></div>
+        <div class="mtr"><div class="mf" style="width:100%"></div></div>
+        <div class="hr"><span class="hn">State Backend</span><span class="hv">SECURE</span></div>
+        <div class="mtr" style="margin-bottom:0"><div class="mf" style="width:100%"></div></div>
+      </div>
+
+      <div class="pnl">
+        <div class="plbl">Resources · Day 25</div>
+        <div class="rr"><span class="rt">aws_s3_bucket</span><span class="rc">1</span><span class="bdg">ACTIVE</span></div>
+        <div class="rr"><span class="rt">aws_cloudfront_dist</span><span class="rc">1</span><span class="bdg">ACTIVE</span></div>
+        <div class="rr"><span class="rt">aws_route53_record</span><span class="rc">1</span><span class="bdg a">SYNC</span></div>
+        <div class="rr"><span class="rt">aws_acm_certificate</span><span class="rc">1</span><span class="bdg">ISSUED</span></div>
+        <div class="rr"><span class="rt">aws_s3_object</span><span class="rc">2</span><span class="bdg">ACTIVE</span></div>
+        <div class="rr" style="margin-bottom:0">
+          <span class="rt" style="color:var(--text);font-weight:700">Total managed</span>
+          <span class="rc" style="color:var(--amber)">11</span>
+          <span class="bdg d">ALL</span>
+        </div>
+      </div>
+
+      <div class="pnl">
+        <div class="plbl">Edge Latency · P50</div>
+        <div class="lgrd">
+          <div class="lc"><div class="lr">EU-WEST</div><div class="lv" id="l1">24<span class="lu">ms</span></div></div>
+          <div class="lc"><div class="lr">US-EAST</div><div class="lv" id="l2">68<span class="lu">ms</span></div></div>
+          <div class="lc"><div class="lr">AP-SOUTH</div><div class="lv a" id="l3">142<span class="lu">ms</span></div></div>
+          <div class="lc"><div class="lr">AF-SOUTH</div><div class="lv" id="l4">38<span class="lu">ms</span></div></div>
+        </div>
+      </div>
+
+      <div class="sbft">
+        Beldine Oluoch · Infrastructure Engineer<br>
+        github.com/Bels3/30-day-terraform-challenge<br>
+        State: terraform-state-beldine-2026<br>
+        medium.com/@beldine3
+      </div>
+    </aside>
+
+    <!-- CENTRE -->
+    <main class="ctr">
+      <div class="mpp">
+        <div class="mhl">
+          <h1>INFRASTRUCTURE<br><span>NOMINAL</span></h1>
+          <p>CloudFront PriceClass_100 &nbsp;·&nbsp; 7 edge locations &nbsp;·&nbsp; HTTPS enforced &nbsp;·&nbsp; Route 53 custom domain</p>
+        </div>
+
+        <div class="r53b">
+          <div class="r53l">Route 53 · DNS Alias</div>
+          <div class="r53d">beldine.dev</div>
+          <div class="r53s">● ALIAS → CloudFront active</div>
+        </div>
+
+        <!-- World map -->
+        <svg class="msv" viewBox="0 0 900 420" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+          <path d="M85 85 L130 72 L190 78 L235 95 L255 128 L248 168 L225 192 L200 208 L175 204 L155 218 L132 228 L108 220 L88 205 L74 182 L70 152 L68 122Z" fill="none" stroke="#c8d8e8" stroke-width="1"/>
+          <path d="M162 238 L190 230 L212 242 L222 265 L226 292 L220 320 L208 342 L192 355 L174 348 L158 326 L150 300 L148 270 L152 250Z" fill="none" stroke="#c8d8e8" stroke-width="1"/>
+          <path d="M372 68 L400 62 L422 70 L438 86 L432 102 L415 112 L394 118 L376 110 L364 96 L362 80Z" fill="none" stroke="#c8d8e8" stroke-width="1"/>
+          <path d="M372 128 L402 120 L428 128 L446 150 L450 180 L444 215 L428 248 L408 268 L386 272 L364 260 L350 234 L346 202 L350 172 L358 150Z" fill="none" stroke="#c8d8e8" stroke-width="1"/>
+          <path d="M458 68 L530 56 L598 62 L660 72 L704 94 L712 120 L692 140 L650 152 L604 156 L562 150 L522 152 L490 144 L466 128 L450 108 L448 88Z" fill="none" stroke="#c8d8e8" stroke-width="1"/>
+          <path d="M618 245 L660 236 L696 244 L716 262 L720 286 L710 308 L686 320 L656 322 L628 314 L610 295 L604 272 L608 255Z" fill="none" stroke="#c8d8e8" stroke-width="1"/>
+          <line x1="0" y1="210" x2="900" y2="210" stroke="#c8d8e8" stroke-width=".5" stroke-dasharray="4,8"/>
+          <line x1="450" y1="0" x2="450" y2="420" stroke="#c8d8e8" stroke-width=".5" stroke-dasharray="4,8"/>
+          <line x1="0" y1="105" x2="900" y2="105" stroke="#c8d8e8" stroke-width=".3" stroke-dasharray="2,10" opacity=".5"/>
+          <line x1="0" y1="315" x2="900" y2="315" stroke="#c8d8e8" stroke-width=".3" stroke-dasharray="2,10" opacity=".5"/>
+          <line x1="225" y1="0" x2="225" y2="420" stroke="#c8d8e8" stroke-width=".3" stroke-dasharray="2,10" opacity=".5"/>
+          <line x1="675" y1="0" x2="675" y2="420" stroke="#c8d8e8" stroke-width=".3" stroke-dasharray="2,10" opacity=".5"/>
+        </svg>
+
+        <!-- Edge dots -->
+        <div class="edot" style="left:47%;top:32%;animation-delay:0s"></div>
+        <div class="elbl" style="left:47%;top:32%">EU-WEST-1 ★ ORIGIN</div>
+
+        <div class="edot" style="left:22%;top:37%;animation-delay:.4s"></div>
+        <div class="elbl" style="left:22%;top:37%">US-EAST-1</div>
+
+        <div class="edot" style="left:11%;top:31%;animation-delay:.8s"></div>
+        <div class="elbl" style="left:11%;top:31%">US-WEST-2</div>
+
+        <div class="edot" style="left:76%;top:54%;animation-delay:1.1s"></div>
+        <div class="elbl" style="left:76%;top:54%">AP-SOUTHEAST</div>
+
+        <div class="edot" style="left:83%;top:32%;animation-delay:1.4s"></div>
+        <div class="elbl" style="left:83%;top:32%">AP-NORTHEAST</div>
+
+        <div class="edot a" style="left:47%;top:70%;animation-delay:1.7s"></div>
+        <div class="elbl" style="left:47%;top:70%">AF-SOUTH-1</div>
+
+        <div class="edot" style="left:26%;top:65%;animation-delay:2s"></div>
+        <div class="elbl" style="left:26%;top:65%">SA-EAST-1</div>
+
+        <!-- Route53 dashed line -->
+        <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:4;overflow:visible">
+          <line x1="87%" y1="5%" x2="47%" y2="32%" stroke="#ffb300" stroke-width="1.5" stroke-dasharray="6,4" opacity=".5"/>
+        </svg>
+      </div>
+
+      <!-- Metric cards -->
+      <div class="crow">
+        <div class="card">
+          <div class="cl">Resources Applied</div>
+          <div class="cv">11</div>
+          <div class="cs cg">↑ 0 drift detected</div>
+        </div>
+        <div class="card">
+          <div class="cl">Deploy Time</div>
+          <div class="cv b">2m44s</div>
+          <div class="cs">CloudFront propagation</div>
+        </div>
+        <div class="card">
+          <div class="cl">Cache Hit Rate</div>
+          <div class="cv" id="hitr">94<span style="font-size:55%;font-family:var(--mono)">%</span></div>
+          <div class="cs cg">↑ serving from edge</div>
+        </div>
+        <div class="card">
+          <div class="cl">TF_LOG Lines</div>
+          <div class="cv a">2847</div>
+          <div class="cs">DEBUG · calibration run</div>
+        </div>
+      </div>
+    </main>
+
+    <!-- LOG PANEL -->
+    <aside class="lgp">
+      <div class="lgh">
+        <span class="lgt">TF_LOG · Live Feed</span>
+        <span class="lgl"><div class="pulse sm"></div>STREAMING</span>
+      </div>
+
+      <div class="lff" id="lff"></div>
+
+      <div class="snb">
+        <div class="snt"><div class="pulse sm"></div>Sentinel Policies</div>
+        <div class="sr"><span class="sn">require-https</span><span class="sp">PASS ✓</span></div>
+        <div class="sr"><span class="sn">require-terraform-tag</span><span class="sp">PASS ✓</span></div>
+        <div class="sr"><span class="sn">require-encryption</span><span class="sp">PASS ✓</span></div>
+        <div class="sr"><span class="sn">no-public-write</span><span class="sp">PASS ✓</span></div>
+      </div>
+
+      <div class="upb">
+        <div class="uph"><span>25-Day Challenge Uptime</span><span>100%</span></div>
+        <div class="ubs" id="ubs"></div>
+      </div>
+    </aside>
+
+  </div>
+</div>
+
+<script>
+// Clock
+function tick() {
+  const n = new Date();
+  document.getElementById('clk').textContent =
+    [n.getHours(), n.getMinutes(), n.getSeconds()]
+      .map(v => String(v).padStart(2,'0')).join(':');
+}
+tick(); setInterval(tick, 1000);
+
+// Latency jitter
+function jit(b, r) { return b + Math.floor((Math.random() - .5) * r); }
+function jitLat() {
+  document.getElementById('l1').innerHTML = jit(24,10) + '<span class="lu">ms</span>';
+  document.getElementById('l2').innerHTML = jit(68,18) + '<span class="lu">ms</span>';
+  document.getElementById('l3').innerHTML = jit(142,26) + '<span class="lu">ms</span>';
+  document.getElementById('l4').innerHTML = jit(38,14) + '<span class="lu">ms</span>';
+}
+setInterval(jitLat, 2800);
+
+// Cache hit ticker
+setInterval(() => {
+  const h = 90 + Math.floor(Math.random() * 8);
+  document.getElementById('hitr').innerHTML = h + '<span style="font-size:55%;font-family:var(--mono)">%</span>';
+}, 4500);
+
+// Route53 meter
+let r53 = 68;
+const ri = setInterval(() => {
+  r53 = Math.min(100, r53 + Math.random() * 2.5);
+  const el = document.getElementById('r53m');
+  el.style.width = r53.toFixed(0) + '%';
+  if (r53 >= 100) { el.classList.remove('a'); clearInterval(ri); }
+}, 3000);
+
+// Log feed
+const logs = [
+  { t:'debug', tg:'DEBUG', m:'provider.aws: gRPC plugin negotiating protocol v6' },
+  { t:'info',  tg:'INFO ', m:'backend lock acquired — <em>terraform-state-beldine-2026</em>' },
+  { t:'debug', tg:'DEBUG', m:'reading state: day25/static-website/dev/terraform.tfstate' },
+  { t:'info',  tg:'INFO ', m:'plan: <em>11 resources</em> to create, 0 to change' },
+  { t:'ok',    tg:'APPLY', m:'aws_s3_bucket.website: Created [id=beldine-oluoch-day25]' },
+  { t:'ok',    tg:'APPLY', m:'aws_s3_bucket_server_side_encryption: AES256 applied' },
+  { t:'debug', tg:'DEBUG', m:'public_access_block PUT — waiting propagation [7s]' },
+  { t:'ok',    tg:'APPLY', m:'aws_s3_bucket_policy: GetObject applied' },
+  { t:'ok',    tg:'APPLY', m:'aws_acm_certificate: ISSUED — TLS 1.2 minimum' },
+  { t:'info',  tg:'INFO ', m:'aws_cloudfront_distribution: Creating... (2-5 min)' },
+  { t:'debug', tg:'DEBUG', m:'cloudfront: polling — InProgress [60s]' },
+  { t:'ok',    tg:'APPLY', m:'aws_cloudfront_distribution: Deployed [<em>144s</em>]' },
+  { t:'info',  tg:'INFO ', m:'aws_route53_record: ALIAS → <em>dnkahzgqi1zs0.cloudfront.net</em>' },
+  { t:'warn',  tg:'WARN ', m:'route53: propagation in progress — TTL 300s' },
+  { t:'ok',    tg:'DONE ', m:'<em>Apply complete! 11 added, 0 changed, 0 destroyed.</em>' },
+  { t:'debug', tg:'DEBUG', m:'state flushed to S3 — backend lock released' },
+  { t:'info',  tg:'INFO ', m:'TF_LOG: <em>2847 lines</em> written to terraform-debug.log' },
+];
+
+const hb = [
+  { t:'ok',    tg:'OK   ', m:'GET /index.html 200 — edge HIT — 22ms' },
+  { t:'debug', tg:'DEBUG', m:'cloudfront: all POPs responding — no degradation' },
+  { t:'info',  tg:'INFO ', m:'route53: propagation 94% complete' },
+  { t:'ok',    tg:'OK   ', m:'acm: certificate valid — 364 days remaining' },
+  { t:'warn',  tg:'WARN ', m:'af-south-1: 158ms spike — within acceptable bounds' },
+  { t:'ok',    tg:'OK   ', m:'GET /error.html 200 — edge HIT — 18ms' },
+  { t:'debug', tg:'DEBUG', m:'s3: versioning — PUT lifecycle policy confirmed' },
+];
+
+const feed = document.getElementById('lff');
+let idx = 0;
+
+function ts() {
+  const n = new Date();
+  return [n.getHours(), n.getMinutes(), n.getSeconds()]
+    .map(v => String(v).padStart(2,'0')).join(':');
+}
+
+function addLog(e) {
+  const d = document.createElement('div');
+  d.className = 'll ' + e.t;
+  d.innerHTML = `<span class="lt2">${ts()}</span><span class="ltg ${e.t}">${e.tg}</span><span class="lmg">${e.m}</span>`;
+  feed.appendChild(d);
+  // keep visible lines capped — prevent overflow
+  while (feed.scrollHeight > feed.clientHeight && feed.children.length > 1) {
+    feed.removeChild(feed.firstChild);
+  }
+}
+
+function burst() {
+  if (idx < 6) { addLog(logs[idx++]); setTimeout(burst, 300); }
+  else startFeed();
+}
+function startFeed() {
+  setInterval(() => {
+    if (idx < logs.length) addLog(logs[idx++]);
+    else addLog(hb[Math.floor(Math.random() * hb.length)]);
+  }, 1900);
+}
+setTimeout(burst, 500);
+
+// Uptime blocks — 25 days
+const ubs = document.getElementById('ubs');
+for (let i = 0; i < 25; i++) {
+  const b = document.createElement('div');
+  b.className = 'ub2' + (i === 10 ? ' a' : '');
+  ubs.appendChild(b);
+}
+</script>
+</body>
+</html>
+
