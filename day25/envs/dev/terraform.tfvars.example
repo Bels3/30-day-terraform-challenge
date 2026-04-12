@@ -1,0 +1,7 @@
+bucket_name    = "your-unique-bucket-name"
+environment    = "dev"
+owner          = "your-name"
+project_name   = "static-website-day25"
+index_document = "index.html"
+error_document = "error.html"
+price_class    = "PriceClass_100"
