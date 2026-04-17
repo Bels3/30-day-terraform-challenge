@@ -9,3 +9,7 @@ backend.hcl
 day25/terraform-debug.log
 terraform-aws-webserver-cluster/
 *.tfplan
+*.out
+plans/
+*.out
+plans/
