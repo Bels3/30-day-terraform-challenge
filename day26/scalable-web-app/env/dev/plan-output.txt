@@ -1,0 +1,275 @@
+[0m[1mmodule.vpc.data.aws_availability_zones.available: Reading...[0m[0m
+[0m[1mmodule.vpc.aws_cloudwatch_log_group.flow_logs: Refreshing state... [id=/aws/vpc/terraform-challenge-dev-flow-logs][0m
+[0m[1mmodule.ec2.aws_iam_role.ec2_cloudwatch: Refreshing state... [id=terraform-challenge-dev-ec2-cw-role][0m
+[0m[1mmodule.asg.data.aws_region.current: Reading...[0m[0m
+[0m[1mmodule.vpc.aws_vpc.main: Refreshing state... [id=vpc-0a9b7e9fc87a5363f][0m
+[0m[1mmodule.vpc.aws_iam_role.flow_logs: Refreshing state... [id=terraform-challenge-dev-flow-logs-role][0m
+[0m[1mmodule.asg.data.aws_region.current: Read complete after 0s [id=eu-west-1][0m
+[0m[1mmodule.vpc.data.aws_availability_zones.available: Read complete after 1s [id=eu-west-1][0m
+[0m[1mmodule.ec2.aws_iam_instance_profile.ec2_cloudwatch: Refreshing state... [id=terraform-challenge-dev-ec2-cw-profile][0m
+[0m[1mmodule.ec2.aws_iam_role_policy_attachment.cloudwatch_agent: Refreshing state... [id=terraform-challenge-dev-ec2-cw-role/arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy][0m
+[0m[1mmodule.vpc.aws_iam_role_policy.flow_logs: Refreshing state... [id=terraform-challenge-dev-flow-logs-role:terraform-challenge-dev-flow-logs-policy][0m
+[0m[1mmodule.vpc.aws_internet_gateway.main: Refreshing state... [id=igw-0a8c5f6a260112a8b][0m
+[0m[1mmodule.vpc.aws_subnet.private[0]: Refreshing state... [id=subnet-029e1f8abb0a5a419][0m
+[0m[1mmodule.vpc.aws_subnet.public[0]: Refreshing state... [id=subnet-075356f5c7e975414][0m
+[0m[1mmodule.vpc.aws_subnet.public[1]: Refreshing state... [id=subnet-092ef66de9355a510][0m
+[0m[1mmodule.vpc.aws_flow_log.main: Refreshing state... [id=fl-0b28b4f9a14f892bb][0m
+[0m[1mmodule.vpc.aws_subnet.private[1]: Refreshing state... [id=subnet-0dc7f71686738014b][0m
+[0m[1mmodule.alb.aws_security_group.alb: Refreshing state... [id=sg-0e82839e2509d1ea5][0m
+[0m[1mmodule.alb.aws_lb_target_group.web: Refreshing state... [id=arn:aws:elasticloadbalancing:eu-west-1:378898160669:targetgroup/terraform-challenge-dev-tg/17cc6722d87be89c][0m
+[0m[1mmodule.ec2.aws_security_group.instance: Refreshing state... [id=sg-04758a41dabdf8ab0][0m
+[0m[1mmodule.vpc.aws_route_table.public: Refreshing state... [id=rtb-09f0ff936d7b24cd7][0m
+[0m[1mmodule.vpc.aws_eip.nat[0]: Refreshing state... [id=eipalloc-040fc62a9e3790567][0m
+[0m[1mmodule.vpc.aws_eip.nat[1]: Refreshing state... [id=eipalloc-0e5d7905d1f6a2c7d][0m
+[0m[1mmodule.alb.aws_lb.web: Refreshing state... [id=arn:aws:elasticloadbalancing:eu-west-1:378898160669:loadbalancer/app/terraform-challenge-dev-alb/43faf4f651a93117][0m
+[0m[1mmodule.alb.aws_security_group_rule.alb_to_instance: Refreshing state... [id=sgrule-4053800560][0m
+[0m[1mmodule.vpc.aws_route_table_association.public[1]: Refreshing state... [id=rtbassoc-085eb0bfbba8efa21][0m
+[0m[1mmodule.vpc.aws_route_table_association.public[0]: Refreshing state... [id=rtbassoc-002507e70ff10e00f][0m
+[0m[1mmodule.ec2.aws_launch_template.web: Refreshing state... [id=lt-05e779b7b523e4fbf][0m
+[0m[1mmodule.alb.aws_cloudwatch_metric_alarm.target_5xx_errors: Refreshing state... [id=terraform-challenge-dev-target-5xx-errors][0m
+[0m[1mmodule.asg.aws_autoscaling_group.web: Refreshing state... [id=terraform-challenge-dev-asg][0m
+[0m[1mmodule.vpc.aws_nat_gateway.main[0]: Refreshing state... [id=nat-0e14180c02343de99][0m
+[0m[1mmodule.vpc.aws_nat_gateway.main[1]: Refreshing state... [id=nat-0f6eb441dc4dcdedf][0m
+[0m[1mmodule.alb.aws_cloudwatch_metric_alarm.alb_5xx_errors: Refreshing state... [id=terraform-challenge-dev-alb-5xx-errors][0m
+[0m[1mmodule.alb.aws_cloudwatch_metric_alarm.high_request_count: Refreshing state... [id=terraform-challenge-dev-high-requests][0m
+[0m[1mmodule.alb.aws_lb_listener.http[0]: Refreshing state... [id=arn:aws:elasticloadbalancing:eu-west-1:378898160669:listener/app/terraform-challenge-dev-alb/43faf4f651a93117/8632ba01af9a1ad6][0m
+[0m[1mmodule.vpc.aws_route_table.private[0]: Refreshing state... [id=rtb-0a94b233dcf6f1a63][0m
+[0m[1mmodule.vpc.aws_route_table.private[1]: Refreshing state... [id=rtb-0852259f0c629d201][0m
+[0m[1mmodule.vpc.aws_route_table_association.private[0]: Refreshing state... [id=rtbassoc-0f76398006e6f409e][0m
+[0m[1mmodule.vpc.aws_route_table_association.private[1]: Refreshing state... [id=rtbassoc-070a8b664459a3f52][0m
+[0m[1mmodule.asg.aws_cloudwatch_dashboard.web_asg: Refreshing state... [id=terraform-challenge-dev-web-dashboard][0m
+[0m[1mmodule.asg.aws_autoscaling_policy.scale_in: Refreshing state... [id=terraform-challenge-dev-scale-in][0m
+[0m[1mmodule.asg.aws_autoscaling_policy.cpu_target_tracking: Refreshing state... [id=terraform-challenge-dev-cpu-target-tracking][0m
+[0m[1mmodule.asg.aws_cloudwatch_metric_alarm.cpu_low: Refreshing state... [id=terraform-challenge-dev-cpu-low][0m
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  [32m+[0m create[0m
+  [33m~[0m update in-place[0m
+  [31m-[0m destroy[0m
+
+Terraform will perform the following actions:
+
+[1m  # module.alb.aws_lb_listener.http[0m will be created
+[0m  [32m+[0m[0m resource "aws_lb_listener" "http" {
+      [32m+[0m[0m arn                                                                   = (known after apply)
+      [32m+[0m[0m id                                                                    = (known after apply)
+      [32m+[0m[0m load_balancer_arn                                                     = "arn:aws:elasticloadbalancing:eu-west-1:378898160669:loadbalancer/app/terraform-challenge-dev-alb/43faf4f651a93117"
+      [32m+[0m[0m port                                                                  = 80
+      [32m+[0m[0m protocol                                                              = "HTTP"
+      [32m+[0m[0m region                                                                = "eu-west-1"
+      [32m+[0m[0m routing_http_request_x_amzn_mtls_clientcert_header_name               = (known after apply)
+      [32m+[0m[0m routing_http_request_x_amzn_mtls_clientcert_issuer_header_name        = (known after apply)
+      [32m+[0m[0m routing_http_request_x_amzn_mtls_clientcert_leaf_header_name          = (known after apply)
+      [32m+[0m[0m routing_http_request_x_amzn_mtls_clientcert_serial_number_header_name = (known after apply)
+      [32m+[0m[0m routing_http_request_x_amzn_mtls_clientcert_subject_header_name       = (known after apply)
+      [32m+[0m[0m routing_http_request_x_amzn_mtls_clientcert_validity_header_name      = (known after apply)
+      [32m+[0m[0m routing_http_request_x_amzn_tls_cipher_suite_header_name              = (known after apply)
+      [32m+[0m[0m routing_http_request_x_amzn_tls_version_header_name                   = (known after apply)
+      [32m+[0m[0m routing_http_response_access_control_allow_credentials_header_value   = (known after apply)
+      [32m+[0m[0m routing_http_response_access_control_allow_headers_header_value       = (known after apply)
+      [32m+[0m[0m routing_http_response_access_control_allow_methods_header_value       = (known after apply)
+      [32m+[0m[0m routing_http_response_access_control_allow_origin_header_value        = (known after apply)
+      [32m+[0m[0m routing_http_response_access_control_expose_headers_header_value      = (known after apply)
+      [32m+[0m[0m routing_http_response_access_control_max_age_header_value             = (known after apply)
+      [32m+[0m[0m routing_http_response_content_security_policy_header_value            = (known after apply)
+      [32m+[0m[0m routing_http_response_server_enabled                                  = (known after apply)
+      [32m+[0m[0m routing_http_response_strict_transport_security_header_value          = (known after apply)
+      [32m+[0m[0m routing_http_response_x_content_type_options_header_value             = (known after apply)
+      [32m+[0m[0m routing_http_response_x_frame_options_header_value                    = (known after apply)
+      [32m+[0m[0m ssl_policy                                                            = (known after apply)
+      [32m+[0m[0m tags_all                                                              = (known after apply)
+      [32m+[0m[0m tcp_idle_timeout_seconds                                              = (known after apply)
+
+      [32m+[0m[0m default_action {
+          [32m+[0m[0m order            = (known after apply)
+          [32m+[0m[0m target_group_arn = "arn:aws:elasticloadbalancing:eu-west-1:378898160669:targetgroup/terraform-challenge-dev-tg/17cc6722d87be89c"
+          [32m+[0m[0m type             = "forward"
+        }
+
+      [32m+[0m[0m mutual_authentication (known after apply)
+    }
+
+[1m  # module.alb.aws_lb_listener.http[0][0m will be [1m[31mdestroyed[0m
+  # (because resource does not use count)
+[0m  [31m-[0m[0m resource "aws_lb_listener" "http" {
+      [31m-[0m[0m arn                                                                 = "arn:aws:elasticloadbalancing:eu-west-1:378898160669:listener/app/terraform-challenge-dev-alb/43faf4f651a93117/8632ba01af9a1ad6" [90m-> null[0m[0m
+      [31m-[0m[0m id                                                                  = "arn:aws:elasticloadbalancing:eu-west-1:378898160669:listener/app/terraform-challenge-dev-alb/43faf4f651a93117/8632ba01af9a1ad6" [90m-> null[0m[0m
+      [31m-[0m[0m load_balancer_arn                                                   = "arn:aws:elasticloadbalancing:eu-west-1:378898160669:loadbalancer/app/terraform-challenge-dev-alb/43faf4f651a93117" [90m-> null[0m[0m
+      [31m-[0m[0m port                                                                = 80 [90m-> null[0m[0m
+      [31m-[0m[0m protocol                                                            = "HTTP" [90m-> null[0m[0m
+      [31m-[0m[0m region                                                              = "eu-west-1" [90m-> null[0m[0m
+      [31m-[0m[0m routing_http_response_server_enabled                                = true [90m-> null[0m[0m
+      [31m-[0m[0m tags                                                                = {} [90m-> null[0m[0m
+      [31m-[0m[0m tags_all                                                            = {} [90m-> null[0m[0m
+        [90m# (11 unchanged attributes hidden)[0m[0m
+
+      [31m-[0m[0m default_action {
+          [31m-[0m[0m order            = 1 [90m-> null[0m[0m
+          [31m-[0m[0m target_group_arn = "arn:aws:elasticloadbalancing:eu-west-1:378898160669:targetgroup/terraform-challenge-dev-tg/17cc6722d87be89c" [90m-> null[0m[0m
+          [31m-[0m[0m type             = "forward" [90m-> null[0m[0m
+        }
+    }
+
+[1m  # module.asg.aws_autoscaling_group.web[0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_autoscaling_group" "web" {
+        id                               = "terraform-challenge-dev-asg"
+        name                             = "terraform-challenge-dev-asg"
+        [90m# (32 unchanged attributes hidden)[0m[0m
+
+      [33m~[0m[0m launch_template {
+            id      = "lt-05e779b7b523e4fbf"
+            name    = "terraform-challenge-dev-lt-20260416164455332700000003"
+          [33m~[0m[0m version = "1" -> (known after apply)
+        }
+
+        [90m# (11 unchanged blocks hidden)[0m[0m
+    }
+
+[1m  # module.asg.aws_autoscaling_policy.cpu_target_tracking[0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_autoscaling_policy" "cpu_target_tracking" {
+      [31m-[0m[0m estimated_instance_warmup = 300 [90m-> null[0m[0m
+        id                        = "terraform-challenge-dev-cpu-target-tracking"
+        name                      = "terraform-challenge-dev-cpu-target-tracking"
+        [90m# (10 unchanged attributes hidden)[0m[0m
+
+        [90m# (1 unchanged block hidden)[0m[0m
+    }
+
+[1m  # module.asg.aws_autoscaling_policy.scale_out[0m will be created
+[0m  [32m+[0m[0m resource "aws_autoscaling_policy" "scale_out" {
+      [32m+[0m[0m adjustment_type         = "ChangeInCapacity"
+      [32m+[0m[0m arn                     = (known after apply)
+      [32m+[0m[0m autoscaling_group_name  = "terraform-challenge-dev-asg"
+      [32m+[0m[0m cooldown                = 300
+      [32m+[0m[0m enabled                 = true
+      [32m+[0m[0m id                      = (known after apply)
+      [32m+[0m[0m metric_aggregation_type = (known after apply)
+      [32m+[0m[0m name                    = "terraform-challenge-dev-scale-out"
+      [32m+[0m[0m policy_type             = "SimpleScaling"
+      [32m+[0m[0m region                  = "eu-west-1"
+      [32m+[0m[0m scaling_adjustment      = 1
+    }
+
+[1m  # module.asg.aws_cloudwatch_metric_alarm.cpu_high[0m will be created
+[0m  [32m+[0m[0m resource "aws_cloudwatch_metric_alarm" "cpu_high" {
+      [32m+[0m[0m actions_enabled                       = true
+      [32m+[0m[0m alarm_actions                         = (known after apply)
+      [32m+[0m[0m alarm_description                     = "Scale out when average CPU >= 70%"
+      [32m+[0m[0m alarm_name                            = "terraform-challenge-dev-cpu-high"
+      [32m+[0m[0m arn                                   = (known after apply)
+      [32m+[0m[0m comparison_operator                   = "GreaterThanOrEqualToThreshold"
+      [32m+[0m[0m dimensions                            = {
+          [32m+[0m[0m "AutoScalingGroupName" = "terraform-challenge-dev-asg"
+        }
+      [32m+[0m[0m evaluate_low_sample_count_percentiles = (known after apply)
+      [32m+[0m[0m evaluation_periods                    = 2
+      [32m+[0m[0m id                                    = (known after apply)
+      [32m+[0m[0m metric_name                           = "CPUUtilization"
+      [32m+[0m[0m namespace                             = "AWS/EC2"
+      [32m+[0m[0m period                                = 120
+      [32m+[0m[0m region                                = "eu-west-1"
+      [32m+[0m[0m statistic                             = "Average"
+      [32m+[0m[0m tags                                  = {
+          [32m+[0m[0m "Day"         = "26"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "Terraform"
+          [32m+[0m[0m "Owner"       = "BeldineOluoch"
+          [32m+[0m[0m "Project"     = "terraform-challenge"
+          [32m+[0m[0m "Purpose"     = "AutoScalingGroup"
+        }
+      [32m+[0m[0m tags_all                              = {
+          [32m+[0m[0m "Day"         = "26"
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "Terraform"
+          [32m+[0m[0m "Owner"       = "BeldineOluoch"
+          [32m+[0m[0m "Project"     = "terraform-challenge"
+          [32m+[0m[0m "Purpose"     = "AutoScalingGroup"
+        }
+      [32m+[0m[0m threshold                             = 70
+      [32m+[0m[0m treat_missing_data                    = "missing"
+    }
+
+[1m  # module.ec2.aws_launch_template.web[0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_launch_template" "web" {
+        id                                   = "lt-05e779b7b523e4fbf"
+      [33m~[0m[0m latest_version                       = 1 -> (known after apply)
+        name                                 = "terraform-challenge-dev-lt-20260416164455332700000003"
+        tags                                 = {
+            "Day"         = "26"
+            "Environment" = "dev"
+            "ManagedBy"   = "Terraform"
+            "Owner"       = "BeldineOluoch"
+            "Project"     = "terraform-challenge"
+            "Purpose"     = "ScalableWebApp"
+        }
+        [90m# (18 unchanged attributes hidden)[0m[0m
+
+      [32m+[0m[0m iam_instance_profile {}
+
+        [90m# (5 unchanged blocks hidden)[0m[0m
+    }
+
+[1m  # module.ec2.aws_security_group.instance[0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_security_group" "instance" {
+        id                     = "sg-04758a41dabdf8ab0"
+      [33m~[0m[0m ingress                = [
+          [31m-[0m[0m {
+              [31m-[0m[0m cidr_blocks      = []
+              [31m-[0m[0m description      = "Allow traffic from ALB to instances"
+              [31m-[0m[0m from_port        = 80
+              [31m-[0m[0m ipv6_cidr_blocks = []
+              [31m-[0m[0m prefix_list_ids  = []
+              [31m-[0m[0m protocol         = "tcp"
+              [31m-[0m[0m security_groups  = [
+                  [31m-[0m[0m "sg-0e82839e2509d1ea5",
+                ]
+              [31m-[0m[0m self             = false
+              [31m-[0m[0m to_port          = 80
+            },
+          [31m-[0m[0m {
+              [31m-[0m[0m cidr_blocks      = []
+              [31m-[0m[0m description      = "Allow traffic from ALB to instances"
+              [31m-[0m[0m from_port        = 80
+              [31m-[0m[0m ipv6_cidr_blocks = []
+              [31m-[0m[0m prefix_list_ids  = []
+              [31m-[0m[0m protocol         = "tcp"
+              [31m-[0m[0m security_groups  = []
+              [31m-[0m[0m self             = false
+              [31m-[0m[0m to_port          = 80
+            },
+          [32m+[0m[0m {
+              [32m+[0m[0m cidr_blocks      = []
+              [32m+[0m[0m description      = "HTTP from ALB"
+              [32m+[0m[0m from_port        = 80
+              [32m+[0m[0m ipv6_cidr_blocks = []
+              [32m+[0m[0m prefix_list_ids  = []
+              [32m+[0m[0m protocol         = "tcp"
+              [32m+[0m[0m security_groups  = []
+              [32m+[0m[0m self             = false
+              [32m+[0m[0m to_port          = 80
+            },
+            [90m# (1 unchanged element hidden)[0m[0m
+        ]
+        name                   = "terraform-challenge-dev-web-sg"
+        tags                   = {
+            "Day"         = "26"
+            "Environment" = "dev"
+            "ManagedBy"   = "Terraform"
+            "Name"        = "terraform-challenge-dev-web-sg"
+            "Owner"       = "BeldineOluoch"
+            "Project"     = "terraform-challenge"
+            "Purpose"     = "ScalableWebApp"
+        }
+        [90m# (9 unchanged attributes hidden)[0m[0m
+    }
+
+[1mPlan:[0m [0m3 to add, 4 to change, 1 to destroy.
+[90m
+─────────────────────────────────────────────────────────────────────────────[0m
+
+Saved the plan to: plans/tfplan-clean.out
+
+To perform exactly these actions, run the following command to apply:
+    terraform apply "plans/tfplan-clean.out"
+Releasing state lock. This may take a few moments...
